@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import csvUploadRoutes from './routes/csvUpload.js';
+import getDetailsRoutes from './routes/getDetails.js';
 
 // Import the database connection
 import connectDB from './database/database.js';
@@ -11,16 +13,19 @@ dotenv.config({
 });
 
 const app = express();
-
-// Middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Connect to the database
 connectDB();
 
 // Define routes
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.use('/api', csvUploadRoutes);
+app.use('/api', getDetailsRoutes);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
 });
 
 // Start the server

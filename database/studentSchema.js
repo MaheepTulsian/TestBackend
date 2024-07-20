@@ -3,11 +3,6 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const alumniSchema = new Schema({
-    serialNumber: {
-        type: Number,
-        required: true,
-        unique: true
-    },
     batch: {
         type: Number,
         required: true
@@ -16,6 +11,10 @@ const alumniSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    avatar: {
+        type: String,
+        required: false
     },
     name: {
         type: String,
