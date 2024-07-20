@@ -19,6 +19,9 @@ app.use(express.json());
 connectDB();
 
 // Define routes
+app.use('/', (req, res) => {
+    res.send('Welcome to the Alumni Portal API');
+});
 app.use('/api', csvUploadRoutes);
 app.use('/api', getDetailsRoutes);
 
