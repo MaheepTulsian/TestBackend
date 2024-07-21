@@ -90,3 +90,4 @@ ehthumbs.db
 
 # Linux files
 *.swp
+.vercel
