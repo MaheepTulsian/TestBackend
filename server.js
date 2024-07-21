@@ -9,15 +9,6 @@ import getDetailsRoutes from './routes/getDetails.js';
 // Import the database connection
 import connectDB from './database/database.js';
 
-//cors
-const corsConfig = {
-    origin: "*",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-};
-app.use(cors(corsConfig));
-
-
 dotenv.config({
     path: './.env',
 });
@@ -28,10 +19,18 @@ app.use(express.json());
 // Connect to the database
 connectDB();
 
+//cors
+const corsConfig = {
+    origin: "*",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+};
+app.use(cors(corsConfig));
+
 // Define routes
-app.use('/', (req, res) => {
-    res.send('Welcome to the Alumni Portal API');
-});
+// app.use('', (req, res) => {
+//     res.send('Welcome to the Alumni Portal API');
+// });
 app.use('/api', csvUploadRoutes);
 app.use('/api', getDetailsRoutes);
 
@@ -42,7 +41,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
